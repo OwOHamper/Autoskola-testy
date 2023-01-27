@@ -30,10 +30,10 @@ def download_testy(cooldown=3):
             time.sleep(cooldown)
 
 def parse_testy():
-    otazka_n = 1
     testy = {}
     with alive_bar(pocet_testov, bar="blocks", spinner="dots_waves2") as bar:
         for test in range(pocet_testov):
+            otazka_n = 1
             test += 1
             testy.update({test: {}})
             with open(f"./testy-html/autoskola_test_{test}.html", encoding="utf-8") as f:
