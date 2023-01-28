@@ -44,7 +44,7 @@ def parse_testy():
                     continue
                 testy[test].update({otazka_n: {
                     "otazka": None,
-                    "asnwers": {
+                    "answers": {
                         "a": None,
                         "b": None,
                         "c": None,
@@ -62,11 +62,11 @@ def parse_testy():
                         testy[test][otazka_n]["otazka"] = otazka
                     if "test_odpoved" in element.get("class") and element.name == "label":
                         value = element.text.strip()[0]
-                        testy[test][otazka_n]["asnwers"][value] = element.text.strip()[3:]
+                        testy[test][otazka_n]["answers"][value] = element.text.strip()[3:]
                         if "green" in element.get("class"):
-                            testy[test][otazka_n]["asnwers"]["correct_answer"] = value
+                            testy[test][otazka_n]["answers"]["correct_answer"] = value
                     if "img-responsive" in element.get("class"):
-                        testy[test][otazka_n]["asnwers"]["img"] = element.get("src")
+                        testy[test][otazka_n]["answers"]["img"] = element.get("src")
                 otazka_n += 1
             bar()
 
@@ -89,14 +89,14 @@ def download_images(cooldown=0.1):
     img_count = 0
     for test in testy:
         for otazka in testy[test]:
-            if testy[test][otazka]["asnwers"]["img"] is not None:
+            if testy[test][otazka]["answers"]["img"] is not None:
                 img_count += 1
 
     with alive_bar(img_count, bar="blocks", spinner="dots_waves2") as bar:
         for test in testy:
             for otazka in testy[test]:
-                if testy[test][otazka]["asnwers"]["img"] is not None:
-                    img_url = testy[test][otazka]["asnwers"]["img"]
+                if testy[test][otazka]["answers"]["img"] is not None:
+                    img_url = testy[test][otazka]["answers"]["img"]
                     r = requests.get(f"{base_url}/{img_url}")
                     if not r.ok:
                         time.sleep(5)
