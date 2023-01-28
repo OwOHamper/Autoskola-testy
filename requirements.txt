@@ -1,4 +1,4 @@
-bs4=0.0.1
-requests=2.28.1
-alive-progress=1.6.2
-InquirerPy=0.3.4
+bs4==0.0.1
+requests==2.28.1
+alive-progress==1.6.2
+InquirerPy==0.3.4
