@@ -62,7 +62,7 @@ def parse_testy():
                         testy[test][otazka_n]["otazka"] = otazka
                     if "test_odpoved" in element.get("class") and element.name == "label":
                         value = element.text.strip()[0]
-                        testy[test][otazka_n]["answers"][value] = element.text.strip()[3:]
+                        testy[test][otazka_n]["answers"][value] = element.text.strip().rstrip(',').rstrip('.')[3:]
                         if "green" in element.get("class"):
                             testy[test][otazka_n]["answers"]["correct_answer"] = value
                     if "img-responsive" in element.get("class"):
